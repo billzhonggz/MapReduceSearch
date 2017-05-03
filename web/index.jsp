@@ -57,11 +57,11 @@
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
-                        <input type="text" name="keyword" placeholder="Your keyword here.">
+                        <input type="text" id="keyword">
                     </div>
                 </div>
                 <div class="field">
-                    <div class="ui fluid large teal submit button">
+                    <div id="submit" class="ui fluid large teal submit button">
                         Submit
                     </div>
                 </div>
@@ -77,4 +77,26 @@
 <script src="assets/jquery-3.2.1.min.js"></script>
 <script src="assets/semantic.min.js"></script>
 
+<script>
+    function OnSubmitKeyword(keyword) {
+        $.ajax({
+            type:"POST",
+            url:"search",
+            data:"keyword=" + keyword
+        });
+    }
+
+    $(function(){
+        $("#submit").click(function () {
+            var $keyword=$("#keyword");
+            if ($keyword.val() == "") {
+                alert("Keyword is empty!");
+                $keyword.focus();
+                return false;
+            }
+            else
+                OnSubmitKeyword($keyword.val());
+        })
+    })
+</script>
 </html>
