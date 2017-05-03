@@ -13,7 +13,7 @@ import java.util.StringTokenizer;
  * Created by ZHONG on 2017/5/1.
  */
 public class SearchMapper extends MapReduceBase implements Mapper<Object, Text, Text, Text> {
-    private String keywords = "is";
+    private String keywords = "this is";
     private Text outputRow = new Text();
 
     @Override
@@ -21,20 +21,21 @@ public class SearchMapper extends MapReduceBase implements Mapper<Object, Text, 
         // Get a row
         String row = text.toString();
         StringTokenizer tokenizerArticle = new StringTokenizer(row, "\n");
+        // Initialize variables
+        int lastIndex = 0;
+        int count = 0;
 
-        // TODO: Test substring solution.
         while (tokenizerArticle.hasMoreTokens()) {
             StringTokenizer tokenizer = new StringTokenizer(tokenizerArticle.nextToken());
-            String[] words = row.split(" ");
-            // Traversal string array.
-            for (String word : words) {
-                // Compare words.
-                if (word.equals(keywords)) {
-                    outputRow.set(row);
-                    // Collect outputs. Set incoming keyword as a key, its row as value.
-                    outputCollector.collect(new Text(keywords), outputRow);
-                }
+            while (lastIndex != -1) {
+                lastIndex = row.indexOf(keywords, lastIndex);
             }
+            if (lastIndex != -1) {
+                count++;
+                lastIndex += keywords.length();
+            }
+            if (count != 0)
+                outputCollector.collect(new Text(keywords), outputRow);
         }
     }
 }
