@@ -90,7 +90,7 @@
         $("#submit").click(function () {
             var $keyword=$("#keyword");
             if ($keyword.val() == "") {
-                alert("Keyword is empty!");
+                alert("Please enter a keyword!");
                 $keyword.focus();
                 return false;
             }
