@@ -23,34 +23,20 @@
     <orderEntry type="module-library">
       <library>
         <CLASSES>
-          <root url="file://C:/hadoop-2.7.3/share/hadoop/common/lib" />
+          <root url="file:///opt/hadoop-2.7.3/share/hadoop/yarn" />
+          <root url="file:///opt/hadoop-2.7.3/share/hadoop/mapreduce" />
+          <root url="file:///opt/hadoop-2.7.3/share/hadoop/common" />
+          <root url="file:///opt/hadoop-2.7.3/share/hadoop/hdfs" />
         </CLASSES>
         <JAVADOC />
         <SOURCES>
-          <root url="file://C:/hadoop-2.7.3/share/hadoop/common/lib" />
+          <root url="file:///opt/hadoop-2.7.3/share/hadoop/common/jdiff" />
+          <root url="file:///opt/hadoop-2.7.3/share/hadoop/hdfs/jdiff" />
         </SOURCES>
-        <jarDirectory url="file://C:/hadoop-2.7.3/share/hadoop/common/lib" recursive="false" />
-        <jarDirectory url="file://C:/hadoop-2.7.3/share/hadoop/common/lib" recursive="false" type="SOURCES" />
-      </library>
-    </orderEntry>
-    <orderEntry type="module-library">
-      <library>
-        <CLASSES>
-          <root url="file://C:/hadoop-2.7.3/share/hadoop/httpfs" />
-          <root url="file://C:/hadoop-2.7.3/share/hadoop/mapreduce" />
-          <root url="file://C:/hadoop-2.7.3/share/hadoop/yarn" />
-          <root url="file://C:/hadoop-2.7.3/share/hadoop/common" />
-          <root url="file://C:/hadoop-2.7.3/share/hadoop/hdfs" />
-        </CLASSES>
-        <JAVADOC />
-        <SOURCES>
-          <root url="file://C:/hadoop-2.7.3/share/hadoop/common/jdiff" />
-          <root url="file://C:/hadoop-2.7.3/share/hadoop/hdfs/jdiff" />
-        </SOURCES>
-        <jarDirectory url="file://C:/hadoop-2.7.3/share/hadoop/common" recursive="false" />
-        <jarDirectory url="file://C:/hadoop-2.7.3/share/hadoop/hdfs" recursive="false" />
-        <jarDirectory url="file://C:/hadoop-2.7.3/share/hadoop/mapreduce" recursive="false" />
-        <jarDirectory url="file://C:/hadoop-2.7.3/share/hadoop/yarn" recursive="false" />
+        <jarDirectory url="file:///opt/hadoop-2.7.3/share/hadoop/common" recursive="false" />
+        <jarDirectory url="file:///opt/hadoop-2.7.3/share/hadoop/hdfs" recursive="false" />
+        <jarDirectory url="file:///opt/hadoop-2.7.3/share/hadoop/mapreduce" recursive="false" />
+        <jarDirectory url="file:///opt/hadoop-2.7.3/share/hadoop/yarn" recursive="false" />
       </library>
     </orderEntry>
   </component>

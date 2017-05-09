@@ -37,7 +37,7 @@ public class SearchServlet extends HttpServlet {
         //args[2] = "D:\\ZHONG\\Documents\\IdeaProjects\\CloudComputingCourseProject\\output";
         args[2] = "hdfs://vm1:9000/search/output";
         // Call method. Do mapreduce.
-        SearchDriver.main(args);
+        Search.main(args);
 
         // TODO: Collect results from MapReduce output.
         // Read file from output path.

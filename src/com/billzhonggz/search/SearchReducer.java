@@ -1,23 +1,18 @@
 package com.billzhonggz.search;
 
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.MapReduceBase;
-import org.apache.hadoop.mapred.OutputCollector;
-import org.apache.hadoop.mapred.Reducer;
-import org.apache.hadoop.mapred.Reporter;
+import org.apache.hadoop.mapreduce.Reducer;
 
 import java.io.IOException;
-import java.util.Iterator;
 
 /**
- * Created by ZHONG on 2017/5/1.
+ * Created by zhong on 17-5-10.
  */
-public class SearchReducer extends MapReduceBase implements Reducer<Text, Text, Text, Text> {
+public class SearchReducer extends Reducer<Text, Text, Text, Text> {
     @Override
-    public void reduce(Text text, Iterator<Text> iterator, OutputCollector<Text, Text> outputCollector, Reporter reporter) throws IOException {
-        while (iterator.hasNext()) {
-            // Output all lines.
-            outputCollector.collect(text, iterator.next());
+    public void reduce(Text key, Iterable<Text> values, Context context) throws IOException, InterruptedException {
+        for (Text value : values) {
+            context.write(key, value);
         }
     }
 }

@@ -2,40 +2,33 @@ package com.billzhonggz.search;
 
 import org.apache.hadoop.conf.Configuration;
 import org.apache.hadoop.io.Text;
-import org.apache.hadoop.mapred.*;
+import org.apache.hadoop.mapreduce.Mapper;
 
 import java.io.IOException;
 import java.util.StringTokenizer;
 
 /**
- * Created by ZHONG on 2017/5/1.
+ * Created by zhong on 17-5-10.
  */
-public class SearchMapper extends MapReduceBase implements Mapper<Object, Text, Text, Text> {
-    private String keywords;
-    private Text outputRow = new Text();
-
+public class SearchMapper extends Mapper<Object, Text, Text, Text> {
     @Override
-    public void configure(JobConf job) {
-        keywords = job.get("keyword");
-    }
-
-    @Override
-    public void map(Object key, Text text, OutputCollector<Text, Text> outputCollector, Reporter reporter) throws IOException {
+    public void map(Object key, Text value, Context context) throws IOException, InterruptedException {
+        Configuration conf = context.getConfiguration();
+        String keyword = conf.get("keyword");
+        Text outputRow = new Text();
         // Get a row
-        String row = text.toString();
+        String row = value.toString();
         StringTokenizer tokenizerArticle = new StringTokenizer(row, "\n");
-
-        // TODO: Test substring solution.
         while (tokenizerArticle.hasMoreTokens()) {
             StringTokenizer tokenizer = new StringTokenizer(tokenizerArticle.nextToken());
             String[] words = row.split(" ");
             // Traversal string array.
             for (String word : words) {
                 // Compare words.
-                if (word.equals(keywords)) {
+                if (word.equals(keyword)) {
                     outputRow.set(row);
                     // Collect outputs. Set incoming keyword as a key, its row as value.
-                    outputCollector.collect(new Text(keywords), outputRow);
+                    context.write(new Text(keyword), outputRow);
                 }
             }
         }
