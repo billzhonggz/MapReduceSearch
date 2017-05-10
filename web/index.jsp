@@ -82,7 +82,7 @@
         $.ajax({
             type:"POST",
             url:"search",
-            data:"keyword=" + keyword
+            data:"action=search&keyword=" + keyword
         });
     }
 

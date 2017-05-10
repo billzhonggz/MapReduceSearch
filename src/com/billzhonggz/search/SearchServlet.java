@@ -22,25 +22,39 @@ public class SearchServlet extends HttpServlet {
         String strKeyword = req.getParameter("keyword");
         String strStartRecord = req.getParameter("startRecord");
         String strEndRecord = req.getParameter("endRecord");
-        // FOR TEST: print out parameters. SUCCEED.
-        System.out.println(strKeyword);
 
-        // Transfer keyword to MapReduce driver.
-        // Initialize argument string array.
-        String[] args = new String[3];
-        // Keyword.
-        args[0] = strKeyword;
-        // Input path.
-        //args[1] = "D:\\ZHONG\\Documents\\IdeaProjects\\CloudComputingCourseProject\\input\\13.txt";
-        args[1] = "hdfs://vm1:9000/search/input";
-        // Output path.
-        //args[2] = "D:\\ZHONG\\Documents\\IdeaProjects\\CloudComputingCourseProject\\output";
-        args[2] = "hdfs://vm1:9000/search/output";
-        // Call method. Do mapreduce.
-        Search.main(args);
+        // Determine incoming action.
+        if (strAction.equals("search")) {
+            // FOR TEST: print out parameters. SUCCEED.
+            System.out.println(strKeyword);
 
-        // TODO: Collect results from MapReduce output.
-        // Read file from output path.
+            // Transfer keyword to MapReduce driver.
+            // Initialize argument string array.
+            String[] args = new String[4];
+            // Keyword.
+            args[3] = strKeyword;
+            // jar file path.
+            String jarPath = System.getProperty("catalina.home") + "/SearchMapReduce.jar";
+            // FOR TEST: Print out jar path.
+            resp.getWriter().append("Server at: " + jarPath);
+            // Set jar file path.
+            args[0] = jarPath;
+            // Input path.
+            args[1] = "/search/input";
+            // Output path.
+            args[2] = "/search/output";
+            // Call method. Do mapreduce.
+            try {
+                Search.main(args);
+            } catch (Exception e) {
+                e.printStackTrace();
+            }
+
+            // TODO: Collect results from MapReduce output.
+            // Read file from output path.
+
+        }
+        // TODO: Read file in lines.
 
 
         // TODO: Forward results to result.jsp.

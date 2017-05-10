@@ -1,9 +1,0 @@
-<component name="ArtifactManager">
-  <artifact type="war" name="search">
-    <output-path>$PROJECT_DIR$/out/artifacts/search</output-path>
-    <root id="archive" name="search.war">
-      <element id="module-output" name="CloudComputingCourseProject" />
-      <element id="javaee-facet-resources" facet="CloudComputingCourseProject/web/Web" />
-    </root>
-  </artifact>
-</component>
