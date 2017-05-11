@@ -19,11 +19,11 @@
 <configuration>
     <property>
         <name>fs.default.name</name>
-        <value>hdfs://vm1:9000</value>
+        <value>hdfs://master:9000</value>
     </property>
     <property>
         <name>hadoop.tmp.dir</name>
-        <value>file:/data/install/apache/hadoop-2.7.3/tmp</value>
+        <value>file:/opt/hadoop-2.7.3/tmp</value>
     </property>
     <property>
         <name>io.file.buffer.size</name>

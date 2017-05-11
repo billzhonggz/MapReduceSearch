@@ -29,15 +29,15 @@
 
     <property>
         <name>mapreduce.application.classpath</name>
-        <value>/data/install/apache/hadoop-2.7.3/etc/hadoop,
-            /data/install/apache/hadoop-2.7.3/share/hadoop/common/*,
-            /data/install/apache/hadoop-2.7.3/share/hadoop/common/lib/*,
-            /data/install/apache/hadoop-2.7.3/share/hadoop/hdfs/*,
-            /data/install/apache/hadoop-2.7.3/share/hadoop/hdfs/lib/*,
-            /data/install/apache/hadoop-2.7.3/share/hadoop/mapreduce/*,
-            /data/install/apache/hadoop-2.7.3/share/hadoop/mapreduce/lib/*,
-            /data/install/apache/hadoop-2.7.3/share/hadoop/yarn/*,
-            /data/install/apache/hadoop-2.7.3/share/hadoop/yarn/lib/*
+        <value>/opt/hadoop-2.7.3/etc/hadoop,
+            /opt/hadoop-2.7.3/share/hadoop/common/*,
+            /opt/hadoop-2.7.3/share/hadoop/common/lib/*,
+            /opt/hadoop-2.7.3/share/hadoop/hdfs/*,
+            /opt/hadoop-2.7.3/share/hadoop/hdfs/lib/*,
+            /opt/hadoop-2.7.3/share/hadoop/mapreduce/*,
+            /opt/hadoop-2.7.3/share/hadoop/mapreduce/lib/*,
+            /opt/hadoop-2.7.3/share/hadoop/yarn/*,
+            /opt/apache/hadoop-2.7.3/share/hadoop/yarn/lib/*
         </value>
     </property>
     <property>
@@ -46,10 +46,10 @@
     </property>
     <property>
         <name>mapreduce.jobhistory.address</name>
-        <value>vm1:10020</value>
+        <value>master:10020</value>
     </property>
     <property>
         <name>mapreduce.jobhistory.webapp.address</name>
-        <value>vm1:19888</value>
+        <value>master:19888</value>
     </property>
 </configuration>

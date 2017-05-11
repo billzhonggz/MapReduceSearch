@@ -19,11 +19,11 @@
 <configuration>
     <property>
         <name>dfs.namenode.name.dir</name>
-        <value>file:/data/install/apache/hadoop-2.7.3/hdfs/name</value>
+        <value>file:/opt/hadoop-2.7.3/hdfs/name</value>
     </property>
     <property>
         <name>dfs.datanode.data.dir</name>
-        <value>file:/data/install/apache/hadoop-2.7.3/hdfs/data</value>
+        <value>file:/opt/hadoop-2.7.3/hdfs/data</value>
     </property>
     <property>
         <name>dfs.replication</name>
@@ -31,7 +31,7 @@
     </property>
     <property>
         <name>dfs.namenode.secondary.http-address</name>
-        <value>vm1:9001</value>
+        <value>master:9001</value>
     </property>
     <property>
         <name>dfs.webhdfs.enabled</name>

@@ -58,7 +58,7 @@
 </div>
 <div class="ui raised very padded text container segment">
     <p>Search Engine Based on Hadoop</p>
-    <p><i class="copyright icon"></i>2017 钟钧儒 (1430003045)</p>
+    <p><i class="copyright icon"></i>2017 Junru Zhong (1430003045)</p>
     <p>Course Project for Cloud Computing</p>
 </div>
 </body>

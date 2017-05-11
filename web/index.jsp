@@ -53,17 +53,15 @@
     <div class="column">
         <h2>Search Engine Base on Hadoop</h2>
         <strong>Please only enter ONE valid English word!</strong>
-        <form class="ui large form">
+        <form class="ui large form" method="post" action="/mapredsearch/search">
             <div class="ui stacked segment">
                 <div class="field">
                     <div class="ui left icon input">
-                        <input type="text" id="keyword">
+                        <input type="text" name="keyword">
                     </div>
                 </div>
                 <div class="field">
-                    <div id="submit" class="ui fluid large teal submit button">
-                        Submit
-                    </div>
+                    <input id="submit" type="submit" class="ui fluid large teal submit button">
                 </div>
                 <p>A search will usually take 30 seconds or more.</p>
                 <p>
@@ -82,14 +80,6 @@
 <script src="assets/semantic.min.js"></script>
 
 <script>
-    function OnSubmitKeyword(keyword) {
-        $.ajax({
-            type:"POST",
-            url:"search",
-            data:"action=search&keyword=" + keyword
-        });
-    }
-
     $(function(){
         $("#submit").click(function () {
             var $keyword=$("#keyword");
@@ -98,8 +88,8 @@
                 $keyword.focus();
                 return false;
             }
-            else
-                OnSubmitKeyword($keyword.val());
+            else{}
+                //OnSubmitKeyword($keyword.val());
         })
     })
 </script>
