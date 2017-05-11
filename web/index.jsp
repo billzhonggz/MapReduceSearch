@@ -52,7 +52,7 @@
 <div class="ui middle aligned center aligned grid">
     <div class="column">
         <h2>Search Engine Base on Hadoop</h2>
-        <strong>Please only enter a valid English word!</strong>
+        <strong>Please only enter ONE valid English word!</strong>
         <form class="ui large form">
             <div class="ui stacked segment">
                 <div class="field">
@@ -65,6 +65,10 @@
                         Submit
                     </div>
                 </div>
+                <p>A search will usually take 30 seconds or more.</p>
+                <p>
+                    <i class="help icon"></i>If the page is no responding, please check <a href="http://192.168.10.210:8088">Hadoop Jobs Page</a>.
+                </p>
             </div>
         </form>
         <p><strong>This is a course project for Cloud Computing.</strong></p>

@@ -49,7 +49,7 @@ public class SearchServlet extends HttpServlet {
             } catch (Exception e) {
                 e.printStackTrace();
                 // Search failed.
-                message = "System internal error while search.";
+                message = "System internal error while search: " + e.getMessage();
                 req.setAttribute("message", message);
                 RequestDispatcher rd = req.getRequestDispatcher("result.jsp");
                 rd.forward(req, resp);
@@ -70,7 +70,12 @@ public class SearchServlet extends HttpServlet {
                 RequestDispatcher rd = req.getRequestDispatcher("result.jsp");
                 rd.forward(req, resp);
             }
-
+        }
+        else {
+            message = "Invalid action argument. ";
+            req.setAttribute("message", message);
+            RequestDispatcher rd = req.getRequestDispatcher("result.jsp");
+            rd.forward(req, resp);
         }
     }
 }

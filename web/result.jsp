@@ -35,8 +35,31 @@
 
 </head>
 <body>
-    <div class="ui grid">
-
+<div class="ui attached stackable menu">
+    <div class="ui container">
+        <a class="item" href="index.jsp">
+            <i class="home icon"></i>Back to main page
+        </a>
+        <div class="item">
+            <i class="info circle icon"></i>
+            <strong>Message: </strong>${message}
+        </div>
+        <a class="right item" href="http://192.168.10.210:8088">
+            <i class="help icon"></i>For more technical information: Hadoop Job Status Page
+        </a>
     </div>
+</div>
+<div class="ui raised very padded text container segment">
+    <h2 class="ui header">Search Result</h2>
+    <p>${result}</p>
+    <p>
+        <a class="item" href="index.jsp"><i class="home icon"></i>Back to main page</a>
+    </p>
+</div>
+<div class="ui raised very padded text container segment">
+    <p>Search Engine Based on Hadoop</p>
+    <p><i class="copyright icon"></i>2017 钟钧儒 (1430003045)</p>
+    <p>Course Project for Cloud Computing</p>
+</div>
 </body>
 </html>
