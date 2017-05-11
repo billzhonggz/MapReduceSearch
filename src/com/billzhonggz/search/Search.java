@@ -45,7 +45,7 @@ public class Search {
         }
         job.waitForCompletion(true);
         // Read output file.
-        String outputFileUri = "hdfs://vm1:9000/search/output/part-r-00000";
+        String outputFileUri = "hdfs://master:9000/search/output/part-r-00000";
         Configuration confReadFile = new Configuration();
         String ret = "";
         FileSystem fsReadFile = FileSystem.get(URI.create(outputFileUri), confReadFile);
