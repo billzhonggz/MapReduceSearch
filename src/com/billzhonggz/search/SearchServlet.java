@@ -1,5 +1,6 @@
 package com.billzhonggz.search;
 
+import javax.servlet.RequestDispatcher;
 import javax.servlet.ServletException;
 import javax.servlet.http.HttpServlet;
 import javax.servlet.http.HttpServletRequest;
@@ -11,6 +12,9 @@ import java.io.IOException;
  */
 
 public class SearchServlet extends HttpServlet {
+    private String strResult = "";
+    private String message = "";
+
     @Override
     protected void doGet(HttpServletRequest req, HttpServletResponse resp) throws ServletException, IOException {
         doPost(req, resp);
@@ -22,12 +26,8 @@ public class SearchServlet extends HttpServlet {
         String strKeyword = req.getParameter("keyword");
         String strStartRecord = req.getParameter("startRecord");
         String strEndRecord = req.getParameter("endRecord");
-
         // Determine incoming action.
         if (strAction.equals("search")) {
-            // FOR TEST: print out parameters. SUCCEED.
-            System.out.println(strKeyword);
-
             // Transfer keyword to MapReduce driver.
             // Initialize argument string array.
             String[] args = new String[4];
@@ -45,18 +45,32 @@ public class SearchServlet extends HttpServlet {
             args[2] = "/search/output";
             // Call method. Do mapreduce.
             try {
-                Search.main(args);
+                strResult = Search.doSearch(args);
             } catch (Exception e) {
                 e.printStackTrace();
+                // Search failed.
+                message = "System internal error while search.";
+                req.setAttribute("message", message);
+                RequestDispatcher rd = req.getRequestDispatcher("result.jsp");
+                rd.forward(req, resp);
             }
 
-            // TODO: Collect results from MapReduce output.
-            // Read file from output path.
+            // Take returning string as input, write back to web page.
+            if (strResult != "") {
+                // Search success with result.
+                message = "Search succeed for keyword \"" + strKeyword + "\".";
+                req.setAttribute("message", message);
+                req.setAttribute("result", strResult);
+                RequestDispatcher rd = req.getRequestDispatcher("result.jsp");
+                rd.forward(req, resp);
+            } else {
+                // Search failed.
+                message = "No result for keyword \"" + strKeyword + "\".";
+                req.setAttribute("message", message);
+                RequestDispatcher rd = req.getRequestDispatcher("result.jsp");
+                rd.forward(req, resp);
+            }
 
         }
-        // TODO: Read file in lines.
-
-
-        // TODO: Forward results to result.jsp.
     }
 }

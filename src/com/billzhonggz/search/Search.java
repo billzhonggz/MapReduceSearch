@@ -1,28 +1,30 @@
 package com.billzhonggz.search;
 
 import org.apache.hadoop.conf.Configuration;
+import org.apache.hadoop.fs.FSDataInputStream;
 import org.apache.hadoop.fs.FileSystem;
 import org.apache.hadoop.fs.Path;
+import org.apache.hadoop.io.IOUtils;
 import org.apache.hadoop.io.Text;
 import org.apache.hadoop.mapreduce.Job;
-import org.apache.hadoop.mapreduce.Mapper;
-import org.apache.hadoop.mapreduce.Reducer;
 import org.apache.hadoop.mapreduce.lib.input.FileInputFormat;
 import org.apache.hadoop.mapreduce.lib.output.FileOutputFormat;
 
-import java.io.IOException;
-import java.util.StringTokenizer;
+import java.io.ByteArrayOutputStream;
+import java.net.URI;
 
 /**
  * Created by zhong on 17-5-9.
  */
 public class Search {
     public static void main(String[] args) throws Exception {
+        String result = doSearch(args);
+        System.out.println(result);
+    }
+
+    public static String doSearch(String[] args) throws Exception {
         Configuration conf = new Configuration();
-        //conf.set("mapred.map.child.env","export HADOOP_CLASSPATH=$HADOOP_CLASSPATH:`echo *.jar`:`echo lib/*.jar | sed 's/ /:/g'`");
-        //conf.set("mapreduce.job.jar", "full_path_of_my_jobexecutor.jar_in_my_deploy_folder_on_wild‌​fly");
         conf.set("keyword", args[3]);
-        //conf.set("mapred.jar", args[0]);
         conf.addResource("core-site.xml");
         conf.addResource("mapred-site.xml");
         conf.addResource("yarn-site.xml");
@@ -42,5 +44,16 @@ public class Search {
             fs.delete(output, true);
         }
         job.waitForCompletion(true);
+        // Read output file.
+        String outputFileUri = args[2] + "/part-r-00000";
+        Configuration confReadFile = new Configuration();
+        String ret = "";
+        FileSystem fsReadFile = FileSystem.get(URI.create(outputFileUri), confReadFile);
+        Path pathReadFile = new Path(outputFileUri);
+        FSDataInputStream in = fsReadFile.open(pathReadFile);
+        ByteArrayOutputStream out = new ByteArrayOutputStream();
+        IOUtils.copyBytes(in, out, 4096, true);
+        ret = out.toString();
+        return ret;
     }
 }
