@@ -63,7 +63,7 @@
                 <div class="field">
                     <input id="submit" type="submit" class="ui fluid large teal submit button">
                 </div>
-                <p>A search will usually take 30 seconds or more.</p>
+                <p>A search will usually take <strong>40 minutes</strong> or more.</p>
                 <p>
                     <i class="help icon"></i>If the page is no responding, please check <a href="http://192.168.10.210:8088">Hadoop Jobs Page</a>.
                 </p>
